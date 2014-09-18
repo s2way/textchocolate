@@ -1,4 +1,4 @@
-textchocolate
+TextChocolate
 =============
 
-Text chocolate
+Text chocolate is a ligth string translator
