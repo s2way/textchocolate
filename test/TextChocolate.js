@@ -4,13 +4,14 @@
 
 var TextChocolate = require('./../src/TextChocolate');
 var expect = require('expect.js');
+var path = require('path');
 
 describe('TextChocolate.js', function () {
 
     var tc;
 
     beforeEach(function () {
-        tc = new TextChocolate('./../sampleTranslateFile.json');
+        tc = new TextChocolate(path.resolve('./sampleTranslateFile.json'));
     });
 
     describe('lang', function () {
@@ -19,4 +20,5 @@ describe('TextChocolate.js', function () {
             expect(tc.i18n).to.be.equal('pt-BR');
         });
     });
+
 });
