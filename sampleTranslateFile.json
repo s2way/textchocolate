@@ -1,0 +1,27 @@
+{
+    "msg" : "Hello world!",
+    "to" : {
+        "p" : "Hello worlds!",
+        "pt-BR" : { 
+            "s" : "Oi mundo!",
+            "p" : "Oi mundos"
+        },
+        "de-DE" : {
+            "s" : "Hallo Welt!"
+        }
+    }
+},
+{
+    "msg" : "%d beer, please.",
+    "to" : {
+        "p" : "%d beers, please.",
+        "pt-BR" : { 
+            "s" : "%d cerveja, por favor.",
+            "p" : "%d cervejas, por favor."
+        },
+        "de-DE" : {
+            "s" : "Bitte, %d Bier.",
+            "p" : "Bitte, %d Biere."
+        }
+    }
+}
