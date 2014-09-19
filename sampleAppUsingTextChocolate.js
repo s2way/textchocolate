@@ -1,5 +1,5 @@
 /*jslint devel: true, node: true, indent: 4, vars: true, maxlen: 256 */
-'use strict'
+'use strict';
 
 // In your project you will change for require('TextChocolate');
 var TextChocolate = require('./src/TextChocolate');

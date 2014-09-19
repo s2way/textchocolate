@@ -1,5 +1,6 @@
 /*jslint devel: true, node: true, indent: 4 */
 /*globals describe, it, beforeEach */
+
 'use strict';
 
 var TextChocolate = require('./../src/TextChocolate');
