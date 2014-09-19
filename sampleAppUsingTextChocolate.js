@@ -3,17 +3,18 @@
 
 // In your project you will change for require('TextChocolate');
 var TextChocolate = require('./src/TextChocolate');
+var util = require('util');
 var tc = new TextChocolate('./sampleTranslateFile.json', 'pt-BR'), _T = tc.translate;
 // Do you expect anything else? ;)
 console.log(_T('hello_world'));
 tc.lang('de-DE');
 console.log(_T('hello_world'));
 var amount = 1;
-console.log(_T('beer_please', amount));
+console.log(util.format(_T('beer_please', amount), amount));
 amount += 1;
-console.log(_T('beer_please', amount));
+console.log(util.format(_T('beer_please', amount), amount));
 tc.lang('pt-BR');
 amount = 1;
-console.log(_T('beer_please', amount));
+console.log(util.format(_T('beer_please', amount), amount));
 amount += 1;
-console.log(_T('beer_please', amount));
+console.log(util.format(_T('beer_please', amount), amount));
