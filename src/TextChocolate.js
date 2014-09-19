@@ -3,8 +3,6 @@
 'use strict';
 
 var fs = require('fs');
-var crypto = require('crypto');
-var util = require('util');
 
 var __apply = function (context, func) {
     return function () {
@@ -14,11 +12,11 @@ var __apply = function (context, func) {
 
 function TextChocolate(translationJsonFile, i18n) {
     if (!fs.existsSync(translationJsonFile)) {
-        throw new Error('The file does not exist!');
+        throw new Error('FileNotFound');
     }
     var stats = fs.lstatSync(translationJsonFile);
     if (!stats.isFile()) {
-        throw new Error('Something went wrong!');
+        throw new Error('InvalidFile');
     }
     this.defaultLang = 'en-US';
     this.lang(i18n);
@@ -43,24 +41,18 @@ TextChocolate.prototype.translate = function (msg, n) {
     if (!msg) {
         return '';
     }
-    try {
-        var message = this.data[msg];
-        if (message !== undefined) {
-            var language = message[this.i18n];
-            if (language !== undefined) {
-                var p = (n !== undefined && n > 1) ? 'p' : 's';
-                var translation = language[p];
-                if (translation !== undefined) {
-                    return (n !== undefined) ? util.format(translation, n) : translation;
-                }
+    var message = this.data[msg];
+    if (message !== undefined) {
+        var language = message[this.i18n];
+        if (language !== undefined) {
+            var p = (n !== undefined && n > 1) ? 'p' : 's';
+            var translation = language[p];
+            if (translation !== undefined) {
+                return translation;
             }
         }
-        return msg;
-    } catch (e) {
-        console.log(e);
-        // any error will return the original msg 
-        return msg;
     }
+    return msg;
 };
 
 module.exports = TextChocolate;
