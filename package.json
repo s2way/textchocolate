@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "dependencies": {
   },
+  "author": {
+      "name": "Juliano Lazzarotto [exZ]",
+      "email": "jl.br.nh@gmail.com"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/s2way/textchocolate.git"
+  },
   "devDependencies": {
     "blanket": "^1.1.6",
     "expect.js": "^0.3.1",

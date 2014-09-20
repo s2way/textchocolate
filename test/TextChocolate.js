@@ -8,39 +8,34 @@ var expect = require('expect.js');
 var path = require('path');
 
 describe('TextChocolate.js', function () {
-
-    var tc;
-
-    beforeEach(function () {
-        tc = new TextChocolate(path.resolve('./sampleTranslateFile.json'));
-    });
+    var $this = this;
 
     describe('lang', function () {
         it('should change the current i18n', function () {
-            tc.lang('pt-BR');
-            expect(tc.i18n).to.be.equal('pt-BR');
+            $this.tc.lang('pt-BR');
+            expect($this.tc.i18n).to.be.equal('pt-BR');
         });
     });
 
     function tests() {
         describe('translate', function () {
             it('should return a blank string if there is no msg', function () {
-                expect(tc.translate()).to.be.equal('');
+                expect($this.tc.translate()).to.be.equal('');
             });
             it('should return the key if the key string was not found', function () {
-                expect(tc.translate('Oi')).to.be.equal('Oi');
+                expect($this.tc.translate('Oi')).to.be.equal('Oi');
             });
             it('should return the key if the i18n was not found', function () {
-                tc.lang('ru-RU');
-                expect(tc.translate('hello_world')).to.be.equal('hello_world');
+                $this.tc.lang('ru-RU');
+                expect($this.tc.translate('hello_world')).to.be.equal('hello_world');
             });
             it('should return the singular translation', function () {
-                tc.lang('pt-BR');
-                expect(tc.translate('hello_world')).to.be.equal('Oi mundo!');
+                $this.tc.lang('pt-BR');
+                expect($this.tc.translate('hello_world')).to.be.equal('Oi mundo!');
             });
             it('should return the plural translation', function () {
-                tc.lang('pt-BR');
-                expect(tc.translate('beer_please', 2)).to.be.equal('%d cervejas, por favor.');
+                $this.tc.lang('pt-BR');
+                expect($this.tc.translate('beer_please', 'p')).to.be.equal('%d cervejas, por favor.');
             });
         });
 
@@ -68,6 +63,41 @@ describe('TextChocolate.js', function () {
     }
 
     describe('Building passing a file', function () {
+        $this.tc = new TextChocolate(path.resolve('./sampleTranslateFile.json'));
+        tests();
+    });
+
+    describe('Building passing a json', function () {
+        var data = {
+            "hello_world" : {
+                "en-US " : {
+                    "s" : "Hello world!",
+                    "p" : "Hello worlds!"
+                },
+                "pt-BR" : {
+                    "s" : "Oi mundo!",
+                    "p" : "Oi mundos"
+                },
+                "de-DE" : {
+                    "s" : "Hallo Welt!"
+                }
+            },
+            "beer_please" : {
+                "en-US " : {
+                    "s": "%d beer, please.",
+                    "p": "%d beers, please."
+                },
+                "pt-BR" : {
+                    "s" : "%d cerveja, por favor.",
+                    "p" : "%d cervejas, por favor."
+                },
+                "de-DE" : {
+                    "s" : "Bitte, %d Bier.",
+                    "p" : "Bitte, %d Biere."
+                }
+            }
+        };
+        $this.tc = new TextChocolate(data);
         tests();
     });
 });
